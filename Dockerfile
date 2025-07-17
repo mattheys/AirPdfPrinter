@@ -33,7 +33,6 @@ RUN /tmp/config.sh
 
 # configure AirPrint
 ADD AirPrint-PDF.service /etc/avahi/services/
-ADD avahi-daemon.conf /etc/avahi/
 
 # advertise AirPrint via Bonjour broadcast
 RUN DEBIAN_FRONTEND=noninteractive && \
@@ -44,6 +43,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     echo "image/urf urf string(0,UNIRAST<00>)" > /usr/share/cups/mime/airprint.types && \
     echo "image/urf application/pdf 100 pdftoraster" > /usr/share/cups/mime/airprint.convs && \
     sed -i "s/.*enable-dbus=.*/enable-dbus=no/g" /etc/avahi/avahi-daemon.conf
+
+ADD avahi-daemon.conf /etc/avahi/
 
 # launch CUPS print server
 CMD service cups start && service avahi-daemon start && tail -f /dev/null
