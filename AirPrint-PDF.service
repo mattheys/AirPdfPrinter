@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
 <service-group>
-   <name replace-wildcards="yes">AirPrint PDF @ %h</name>
+   <name replace-wildcards="yes">DMS PDF @ %h</name>
    <service>
       <type>_ipp._tcp</type>
       <subtype>_universal._sub._ipp._tcp</subtype>
