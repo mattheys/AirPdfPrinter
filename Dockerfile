@@ -45,6 +45,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     sed -i "s/.*enable-dbus=.*/enable-dbus=no/g" /etc/avahi/avahi-daemon.conf
 
 ADD avahi-daemon.conf /etc/avahi/
+ADD cups-pdf.conf /etc/cups/
 
 # launch CUPS print server
 CMD service cups start && service avahi-daemon start && tail -f /dev/null
