@@ -33,6 +33,7 @@ RUN /tmp/config.sh
 
 # configure AirPrint
 ADD AirPrint-PDF.service /etc/avahi/services/
+ADD avahi-daemon.conf /etc/avahi/
 
 # advertise AirPrint via Bonjour broadcast
 RUN DEBIAN_FRONTEND=noninteractive && \
