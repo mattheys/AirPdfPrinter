@@ -22,7 +22,9 @@ RUN apt update -y && \
 # configure the CUPS scheduler
 ARG ADMIN_PASSWORD=printer
 RUN mv /etc/cups/cupsd.conf /etc/cups/cupsd.conf.bak && \
+    mv /etc/cups/cups-pdf.conf /etc/cups/cups-pdf.conf.bak && \
     chmod a-w /etc/cups/cupsd.conf.bak && \
+    chmod a-w /etc/cups/cupsd-pdf.conf.bak && \    
     usermod -aG lpadmin root && \
     echo "root:${ADMIN_PASSWORD}" | chpasswd
 ADD cupsd.conf /etc/cups/
