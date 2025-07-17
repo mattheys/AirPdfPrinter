@@ -26,6 +26,7 @@ RUN mv /etc/cups/cupsd.conf /etc/cups/cupsd.conf.bak && \
     usermod -aG lpadmin root && \
     echo "root:${ADMIN_PASSWORD}" | chpasswd
 ADD cupsd.conf /etc/cups/
+ADD cups-pdf.conf /etc/cups/
 
 # setup PDF printer
 ADD --chmod=0755 config.sh /tmp/
@@ -45,7 +46,6 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     sed -i "s/.*enable-dbus=.*/enable-dbus=no/g" /etc/avahi/avahi-daemon.conf
 
 ADD avahi-daemon.conf /etc/avahi/
-ADD cups-pdf.conf /etc/cups/
 
 # launch CUPS print server
 CMD service cups start && service avahi-daemon start && tail -f /dev/null
